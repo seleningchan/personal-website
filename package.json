@@ -3,10 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev:studio": "pnpm --filter personal-website-studio dev",
-    "build:studio": "pnpm --filter personal-website-studio build",
     "dev": "nuxt dev",
     "build": "nuxt build",
+    "start": "nuxt start",
     "bp": "nuxt build && nuxt preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
