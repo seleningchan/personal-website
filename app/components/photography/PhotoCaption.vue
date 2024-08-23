@@ -43,7 +43,7 @@ function getBrand(str: string) {
                     <span class="whitespace-nowrap">ISO {{ exif?.ISO }}</span>
                 </div>
                 <div class="flex text-[10px] sm:text-sm opacity-50">
-                    <p>Photo by Zou piaoling</p>
+                    <p>Photo by Zou piaoliang</p>
                 </div>
             </div>
         </div>
