@@ -13,37 +13,6 @@ const localePath = useLocalePath()
 
 </script>
 
-<script>
-export default {
-  methods: {
-     formatDate(params) {
-  let defalutParams = {
-    date: new Date(new Date().getTime()),
-    formatStr: 'yyyy-MM-dd HH:mm:ss'
-  };
-  params = { ...defalutParams, ...params };
-
-  let date = new Date(new Date(params.date).getTime());
-  let formatStr = params.formatStr;
-
-  formatStr = formatStr.replace(new RegExp('yyyy'), `${date.getFullYear()}`);
-  const month = date.getMonth() + 1;
-  formatStr = formatStr.replace(new RegExp('MM'), `${month > 9 ? month : '0' + month}`);
-  const day = date.getDate();
-  formatStr = formatStr.replace(new RegExp('dd'), `${day > 9 ? day : '0' + day}`);
-  const hour = date.getHours()+8;
-  formatStr = formatStr.replace(new RegExp('HH'), `${hour > 9 ? hour : '0' + hour}`);
-  const min = date.getMinutes();
-  formatStr = formatStr.replace(new RegExp('mm'), `${min > 9 ? min : '0' + min}`);
-  const sec = date.getSeconds();
-  formatStr = formatStr.replace(new RegExp('ss'), `${sec > 9 ? sec : '0' + sec}`);
-
-  return formatStr;
-}
-  }
-}
-</script>
-
 <template>
     <app-layout :title="$t('work.projects') " class="container mx-auto">
         <div class="divide-y divide-dashed">
@@ -68,7 +37,7 @@ export default {
                         {{ $sanityI18n(item.description) }}
                     </p>
                     <p class="text-[0.9rem] xl:text-base text-muted-foreground leading-snug test">
-                       {{$formatDate({ date: item.publishDate, formatStr: 'yyyy-MM-dd HH:mm:ss' })}}
+                       {{new Date(item.publishDate).setHours(new Date(item.publishDate).getHours() + 8).toISOString()}}
                       
                     </p>
 
