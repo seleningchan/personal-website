@@ -70,6 +70,24 @@ export default defineType({
             type: 'internationalizedArrayFormattedText',
             title: 'Content',
         }),
+
+        defineField({
+            name: 'publishDate',
+            type: 'datetime',
+            title: 'Publish date',
+            options: {
+                dateFormat: 'YYYY-MM-DD',
+                timeFormat: 'HH:mm:ss',
+            },
+            initialValue: () => {
+                const date = new Date()
+                const hours = date.getHours(); // 获取小时
+                const minutes = date.getMinutes(); // 获取分钟
+                const seconds = date.getSeconds(); // 获取秒钟
+                return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+            },
+        }),
+
     ],
     preview: {
         select: {
