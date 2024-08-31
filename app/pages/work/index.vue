@@ -36,7 +36,7 @@ const localePath = useLocalePath()
                         {{ $sanityI18n(item.description) }}
                     </p>
                     <p class="text-[0.9rem] xl:text-base text-muted-foreground leading-snug">
-                        ${item.publishDate}
+                       发布日期 {{item.publishDate}}
                     </p>
 
                     <div class="mt-4 flex flex-wrap">
