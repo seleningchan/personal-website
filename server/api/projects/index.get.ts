@@ -30,7 +30,7 @@ export interface Project {
     sourceCodeUrl?: string
     tags: string[]
     coverImage: ResolvedSanityImage
-    publishDate: `${string}-${string}-${string} ${string}:${string}:${string}`
+    publishDate: string
 }
 
 export default defineEventHandler(async () => {
