@@ -37,7 +37,7 @@ const localePath = useLocalePath()
                         {{ $sanityI18n(item.description) }}
                     </p>
                     <p class="text-[0.9rem] xl:text-base text-muted-foreground leading-snug test">
-                       {{new Date(item.publishDate).setHours(new Date(item.publishDate).getHours() + 8).toISOString()}}
+                       {{new Date(new Date(item.publishDate).getTime() + (8 * 60 * 60 * 1000)).toISOString()}}
                       
                     </p>
 
