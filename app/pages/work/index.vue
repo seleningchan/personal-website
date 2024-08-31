@@ -14,7 +14,7 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-    <app-layout :title="日记 " class="container mx-auto">
+    <app-layout :title="$t('work.projects') " class="container mx-auto">
         <div class="divide-y divide-dashed">
             <div v-for="item in data" :key="item.id" class="flex flex-col md:flex-row space-x-4 p-4">
                 <div class="mb-6 md:mb-0 w-4/5 md:w-[200px] xl:w-[240px] self-center md:self-auto">
