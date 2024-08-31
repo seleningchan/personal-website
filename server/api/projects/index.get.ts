@@ -9,11 +9,17 @@ const projectsQuery = groq`
     "slug": slug.current,
     tags,
     url,
+    publishDate,
     sourceCodeUrl,
     coverImage{
       asset->
     }
-}`
+} | order(
+    select(
+        publishDate != null => publishDate,
+    )
+    desc
+)`
 
 export interface Project {
     id: string
@@ -24,6 +30,7 @@ export interface Project {
     sourceCodeUrl?: string
     tags: string[]
     coverImage: ResolvedSanityImage
+    publishDate: `${string}-${string}-${string} ${string}:${string}:${string}`
 }
 
 export default defineEventHandler(async () => {

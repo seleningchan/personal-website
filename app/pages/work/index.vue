@@ -35,6 +35,9 @@ const localePath = useLocalePath()
                     <p class="text-[0.9rem] xl:text-base text-muted-foreground leading-snug">
                         {{ $sanityI18n(item.description) }}
                     </p>
+                    <p class="text-[0.9rem] xl:text-base text-muted-foreground leading-snug">
+                        {{ $sanityI18n(item.publishDate) }}
+                    </p>
 
                     <div class="mt-4 flex flex-wrap">
                         <work-tag v-for="tag in item.tags" :key="tag" :tag />
