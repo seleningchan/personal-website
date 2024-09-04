@@ -11,6 +11,7 @@ const { data } = await useFetch<Project[]>('/api/projects')
 console.log("print data" + data)
 for (let i = 0; i < data.length; i++) {
     if(data[i].coverImage==null){
+        console.log("fix cover image "+data[i].id)
         data[i].coverImage={ "asset": {"metadata": {"lqip": "",}, "_id": "",}}
     }
 }
