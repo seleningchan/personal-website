@@ -7,7 +7,7 @@ useHead({
     title: t('app.work'),
 })
 
-const { data } = await useFetch<Project[]>('/api/projects')
+let data = await useFetch<Project[]>('/api/projects')
 console.log("new print data " + data)
 console.log("begin check")
 for (let i = 0; i < data.length; i++) {
