@@ -8,7 +8,7 @@ useHead({
 })
 
 const { data } = await useFetch<Project[]>('/api/projects')
-
+console.log("print data" + data)
 const localePath = useLocalePath()
 
 </script>
