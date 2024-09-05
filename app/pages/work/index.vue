@@ -8,7 +8,7 @@ useHead({
 })
 
 const {data} = await useFetch<Project[]>('/api/projects')
-console.log("v-if")
+console.log("v-if attribute")
 //为啥没打印，还没弄清楚
 for (let i = 0; i < data.length; i++) {
     console.log("fix cover image "+data[i].id)
@@ -26,16 +26,14 @@ const localePath = useLocalePath()
         <div class="divide-y divide-dashed">
             <div v-for="item in data" :key="item.id" class="flex flex-col md:flex-row space-x-4 p-4">
                 <div class="mb-6 md:mb-0 w-4/5 md:w-[200px] xl:w-[240px] self-center md:self-auto">
-                   <div v-if="item.coverImage">
-                        <ui-aspect-ratio :ratio="16 / 10">
-                            <my-sanity-image
-                                :src="item.coverImage?.asset?._id!"
-                                fit="cover" height="330px"
-                                :placeholder="item.coverImage?.asset?.metadata?.lqip!"
-                                class="bg-cover h-full w-full rounded object-cover"
-                            />
-                        </ui-aspect-ratio>
-                    </div>
+                     <ui-aspect-ratio :ratio="16 / 10">
+                        <my-sanity-image v-if="item.coverImage" 
+                            :src="item.coverImage?.asset?._id!"
+                            fit="cover" height="330px"
+                            :placeholder="item.coverImage?.asset?.metadata?.lqip!"
+                            class="bg-cover h-full w-full rounded object-cover"
+                        />
+                    </ui-aspect-ratio>
                 </div>
 
                 <div class="flex-1 flex flex-col">
