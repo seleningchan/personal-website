@@ -33,10 +33,10 @@ const localePath = useLocalePath()
                             :placeholder="item.coverImage?.asset?.metadata?.lqip!"
                             class="bg-cover h-full w-full rounded object-cover"
                         />
-                         <my-sanity-image v-else="item.coverImage" 
-                            :src=""
+                         <my-sanity-image v-else 
+                            src=""
                             fit="cover" height="330px"
-                            :placeholder=""
+                            placeholder=""
                             class="bg-cover h-full w-full rounded object-cover"
                         />
                     </ui-aspect-ratio>
