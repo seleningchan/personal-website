@@ -8,7 +8,7 @@ useHead({
 })
 
 const {data} = await useFetch<Project[]>('/api/projects')
-console.log("set no data")
+console.log("Fix: asset is null")
 //为啥没打印，还没弄清楚
 for (let i = 0; i < data.length; i++) {
     console.log("fix cover image "+data[i].id)
@@ -31,12 +31,6 @@ const localePath = useLocalePath()
                             :src="item.coverImage?.asset?._id!"
                             fit="cover" height="330px"
                             :placeholder="item.coverImage?.asset?.metadata?.lqip!"
-                            class="bg-cover h-full w-full rounded object-cover"
-                        />
-                         <my-sanity-image v-else 
-                           :src=""
-                            fit="cover" height="330px"
-                            :placeholder=""
                             class="bg-cover h-full w-full rounded object-cover"
                         />
                     </ui-aspect-ratio>
