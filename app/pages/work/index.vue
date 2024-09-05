@@ -8,7 +8,7 @@ useHead({
 })
 
 const {data} = await useFetch<Project[]>('/api/projects')
-console.log("no v-if else")
+console.log("v-id!")
 //为啥没打印，还没弄清楚
 for (let i = 0; i < data.length; i++) {
     console.log("fix cover image "+data[i].id)
@@ -34,7 +34,9 @@ const localePath = useLocalePath()
                             class="bg-cover h-full w-full rounded object-cover"
                         />
                          <my-sanity-image v-else 
+                           :src="item.id!"
                             fit="cover" height="330px"
+                            :placeholder="item.id!"
                             class="bg-cover h-full w-full rounded object-cover"
                         />
                     </ui-aspect-ratio>
