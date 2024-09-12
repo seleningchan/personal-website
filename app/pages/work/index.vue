@@ -7,8 +7,9 @@ useHead({
     title: t('app.work'),
 })
 
-const {data} = await useFetch<Project[]>('/api/projects')
+let data = await useFetch<Project[]>('/api/projects')
 console.log("data length is "+data.length)
+console.log("data is :"+JSON.stringify(data))
 //为啥没打印，还没弄清楚
 for (let i = 0; i < data.length; i++) {
     console.log("fix cover image "+data[i].id)
