@@ -8,14 +8,10 @@ useHead({
 })
 
 const {data} = await useFetch<Project[]>('/api/projects')
-console.log("Fix: asset is null")
+console.log("data length is "+data.length)
 //为啥没打印，还没弄清楚
 for (let i = 0; i < data.length; i++) {
     console.log("fix cover image "+data[i].id)
-    if(data[i].coverImage==null){
-        console.log("fix cover image "+data[i].id)
-        //data[i].coverImage={ "asset": {"metadata": {"lqip": "",}, "_id": ""}}
-    }
 }
 const localePath = useLocalePath()
 
