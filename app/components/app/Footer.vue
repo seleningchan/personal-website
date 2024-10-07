@@ -4,10 +4,10 @@
             <div class="flex flex-col space-y-2">
                 <div class="text-xs flex items-center space-x-1.5">
                     <span>© {{ new Date().getFullYear() }}</span>
-                    <span>Fork from</span>
+                    <span>Management studio</span>
                     <ui-button variant="ghost" class="h-7 w-7 p-0">
                         <a
-                            href="https://github.com/xuzuodong/personal-website"
+                            href="https://personal-website-studio-six.vercel.app/studio/structure"
                             target="_blank"
                         >
                             <icon name="mdi:github" size="20" />
