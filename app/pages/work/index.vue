@@ -57,13 +57,33 @@ for (let i = 0; i < data.length; i++) {
 const localePath = useLocalePath()
 
 
+//---------------------------------------
+export default {
+  methods: {
+    handleScroll(event) {
+      if (this.isScrollToBottom(event)) {
+        this.fetchData();
+      }
+    },
+    isScrollToBottom(event) {
+      const { scrollTop, clientHeight } = event.target;
+      const { scrollHeight } = event.target.scrollTop;
+      return scrollHeight - (scrollTop + clientHeight) < 5; // 5是一个阈值，可以根据需要调整
+    },
+    fetchData() {
+      // 模拟数据加载，实际应用中应该是发起网络请求
+       let temp = await fetchNextPage()
+       data.push(temp)
+    }
+  }
+};
 
 
 </script>
 
 <template>
     <app-layout :title="$t('work.projects') " class="container mx-auto">
-        <div class="divide-y divide-dashed">
+        <div @scroll="handleScroll" class="divide-y divide-dashed">
             <div v-for="item in data" :key="item.id" class="flex flex-col md:flex-row space-x-4 p-4">
                 <div class="mb-6 md:mb-0 w-4/5 md:w-[200px] xl:w-[240px] self-center md:self-auto">
                      <ui-aspect-ratio :ratio="16 / 10">
