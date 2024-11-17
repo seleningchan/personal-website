@@ -87,7 +87,7 @@ for (let i = 0; i < data.length; i++) {
     //console.log("fix cover image "+data[i].id)
 }
 const localePath = useLocalePath();
-
+  
 </script>
 
 <template>
