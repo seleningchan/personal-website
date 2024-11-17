@@ -42,7 +42,7 @@ async function fetchNextPage() {
   return test
 }
 
- window.addEventListener('scroll', handleScrollWindows);
+ //window.addEventListener('scroll', handleScrollWindows);
 
  function handleScrollWindows() {
       // 检查是否滚动到页面底部
@@ -87,7 +87,6 @@ for (let i = 0; i < data.length; i++) {
     //console.log("fix cover image "+data[i].id)
 }
 const localePath = useLocalePath();
-  
 </script>
 
 <template>
