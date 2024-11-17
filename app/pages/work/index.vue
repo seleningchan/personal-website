@@ -32,12 +32,12 @@ async function fetchNextPage() {
     }`, {lastId})
   console.log("result is :"+JSON.stringify(result))
   console.log("last is :"+lastId)
-  if (result.length > 0) {
-    lastId = result[result.length - 1]._id
+  if (result.result.length > 0) {
+    lastId = result[result.result.length - 1]._id
   } else {
     lastId = null // Reached the end
   }
-  return result
+  return result.result
 }
 
 //const {data} = await useFetch<Project[]>('/api/projects')
