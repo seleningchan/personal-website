@@ -36,7 +36,7 @@ async function fetchNextPage() {
   console.log("result is :"+JSON.stringify(test))
   console.log("result length is :"+test.length)
   if (test.length > 0) {
-    lastPublishDate = test[test.length - 1].lastPublishDate
+    lastPublishDate = test[test.length - 1].publishDate
   } else {
     lastPublishDate = null // Reached the end
   }
