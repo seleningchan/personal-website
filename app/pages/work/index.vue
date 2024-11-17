@@ -42,6 +42,25 @@ async function fetchNextPage() {
   return test
 }
 
+
+async function  handleScroll(event) {
+      if (isScrollToBottom(event)) {
+        await fetchData();
+      }
+}
+
+isScrollToBottom(event) {
+   const { scrollTop, clientHeight } = event.target;
+   const { scrollHeight } = event.target.scrollTop;
+   return scrollHeight - (scrollTop + clientHeight) < 5; // 5是一个阈值，可以根据需要调整
+ }  
+
+async fetchData() {
+    // 模拟数据加载，实际应用中应该是发起网络请求
+     var temp = await fetchNextPage();
+     data.push(temp);
+}
+
 let data = await  fetchNextPage()
 //const {data} = await useFetch<Project[]>('/api/projects')
 console.log("data is" + data)
@@ -54,29 +73,7 @@ console.log("data length is "+data.length)
 for (let i = 0; i < data.length; i++) {
     //console.log("fix cover image "+data[i].id)
 }
-const localePath = useLocalePath()
-
-
-//---------------------------------------
-
-async function  handleScroll(event) {
-      if (isScrollToBottom(event)) {
-        await fetchData();
-      }
-    }
-
-isScrollToBottom(event) {
-   const { scrollTop, clientHeight } = event.target;
-   const { scrollHeight } = event.target.scrollTop;
-   return scrollHeight - (scrollTop + clientHeight) < 5; // 5是一个阈值，可以根据需要调整
- }  
-
-async fetchData() {
-    // 模拟数据加载，实际应用中应该是发起网络请求
-     let temp = await fetchNextPage()
-     data.push(temp)
-}
-
+const localePath = useLocalePath();
 
 </script>
 
