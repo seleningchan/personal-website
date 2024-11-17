@@ -42,7 +42,7 @@ async function fetchNextPage() {
 }
 
 let data = await  fetchNextPage()
-/const {data} = await useFetch<Project[]>('/api/projects')
+//const {data} = await useFetch<Project[]>('/api/projects')
 console.log("data is" + data)
 console.log("begin log")
 console.log("data is :"+JSON.stringify(data))
