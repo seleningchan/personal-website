@@ -12,7 +12,7 @@ useHead({
 let lastId = ''
 const projectsQuery1 = groq`
 *[_type == "project" && _id > $lastId] | order(_id desc) [0...10] {
-     _id,
+   "id": _id,
     name,
     description,
     "slug": slug.current,
