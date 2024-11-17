@@ -16,7 +16,7 @@ async function fetchNextPage() {
     return []
   }
   //await useSanity().fetch<Project[]>(projectsQuery)
-  const {result} = await useSanity().fetch<Project[]>(
+  const {result} = await fetch(
     groq`*[_type == "project" && _id < $lastId] | order(_id desc) [0...10] {
       "id": _id,
     name,
@@ -40,7 +40,7 @@ async function fetchNextPage() {
 }
 
 //const {data} = await useFetch<Project[]>('/api/projects')
-const {data} = await fetchNextPage()
+const {data} = await  fetchNextPage()
 console.log("data is :"+JSON.stringify(data))
 console.log("data length is "+data.length)
 
