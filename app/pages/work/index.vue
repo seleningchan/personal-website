@@ -34,7 +34,7 @@ async function fetchNextPage() {
   //获取接口返回的result属性
   let test = await useSanity().fetch<Project[]>(projectsQuery1, {lastId})
   console.log("result is :"+JSON.stringify(test))
-  console.log("last is :"+lastId)
+  console.log("result length is :"+test.length)
   //if (result.length > 0) {
   //  lastId = result[result.length - 1].id
   //} else {
