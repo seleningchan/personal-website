@@ -9,9 +9,9 @@ useHead({
     title: t('app.work'),
 })
 
-let lastId = ''
+let lastPublishDate = ''
 const projectsQuery1 = groq`
-*[_type == "project" && _id > $lastId] | order(_id desc) [0...10] {
+*[_type == "project" && _id > $lastId] | order(publishDate desc) [0...10] {
    "id": _id,
     name,
     description,
@@ -35,11 +35,12 @@ async function fetchNextPage() {
   let test = await useSanity().fetch<Project[]>(projectsQuery1, {lastId})
   console.log("result is :"+JSON.stringify(test))
   console.log("result length is :"+test.length)
-  //if (result.length > 0) {
-  //  lastId = result[result.length - 1].id
-  //} else {
-  //  lastId = null // Reached the end
-  //}
+  if (test.length > 0) {
+    lastPublishDate = result[result.length - 1].lastPublishDate
+  } else {
+    lastPublishDate = null // Reached the end
+  }
+  console.log('last publish date is: '+lastPublishDate)
   return test
 }
 
