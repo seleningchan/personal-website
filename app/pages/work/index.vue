@@ -60,7 +60,7 @@ const localePath = useLocalePath()
 //---------------------------------------
 
 async function  handleScroll(event) {
-      if (this.isScrollToBottom(event)) {
+      if (isScrollToBottom(event)) {
         await this.fetchData();
       }
     }
