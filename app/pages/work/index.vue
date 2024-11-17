@@ -40,7 +40,7 @@ async function fetchNextPage() {
   //} else {
   //  lastId = null // Reached the end
   //}
-  return result
+  return test
 }
 
 let datax = await  fetchNextPage()
