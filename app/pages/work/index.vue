@@ -17,7 +17,7 @@ async function fetchNextPage() {
   }
   //await useSanity().fetch<Project[]>(projectsQuery)
   const {result} = await fetch(
-    groq`*[_type == "project" && _id < $lastId] | order(_id desc) [0...10] {
+    groq`*[_type == "project" && _id > $lastId] | order(_id desc) [0...10] {
       "id": _id,
     name,
     description,
