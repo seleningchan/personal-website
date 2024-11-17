@@ -60,9 +60,9 @@ const localePath = useLocalePath()
 //---------------------------------------
 export default {
   methods: {
-    handleScroll(event) {
+    async handleScroll(event) {
       if (this.isScrollToBottom(event)) {
-        this.fetchData();
+        await this.fetchData();
       }
     },
     isScrollToBottom(event) {
@@ -70,7 +70,7 @@ export default {
       const { scrollHeight } = event.target.scrollTop;
       return scrollHeight - (scrollTop + clientHeight) < 5; // 5是一个阈值，可以根据需要调整
     },
-    fetchData() {
+    async fetchData() {
       // 模拟数据加载，实际应用中应该是发起网络请求
        let temp = await fetchNextPage()
        data.push(temp)
