@@ -41,6 +41,7 @@ async function fetchNextPage() {
 }
 
 //const {data} = await useFetch<Project[]>('/api/projects')
+console.log("begin log")
 const {data} = await  fetchNextPage()
 console.log("data is :"+JSON.stringify(data))
 console.log("data length is "+data.length)
