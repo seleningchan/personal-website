@@ -42,6 +42,19 @@ async function fetchNextPage() {
   return test
 }
 
+ window.addEventListener('scroll', handleScrollWindows);
+
+ function handleScrollWindows() {
+      // 检查是否滚动到页面底部
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const clientHeight = document.documentElement.clientHeight;
+      if (scrollTop + clientHeight >= scrollHeight - 10) {
+        // 触发加载更多数据
+      var temp = await fetchNextPage();
+      data.push(temp);
+      }
+}
 
 async function  handleScroll(event) {
       if(isScrollToBottom(event)) {
@@ -79,7 +92,7 @@ const localePath = useLocalePath();
 
 <template>
     <app-layout :title="$t('work.projects') " class="container mx-auto">
-        <div @scroll="handleScroll" class="divide-y divide-dashed">
+        <div  class="divide-y divide-dashed">
             <div v-for="item in data" :key="item.id" class="flex flex-col md:flex-row space-x-4 p-4">
                 <div class="mb-6 md:mb-0 w-4/5 md:w-[200px] xl:w-[240px] self-center md:self-auto">
                      <ui-aspect-ratio :ratio="16 / 10">
