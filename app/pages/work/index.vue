@@ -27,7 +27,7 @@ const projectsQuery1 = groq`
 
 
 async function fetchNextPage() {
-  if (lastId === null) {
+  if (lastPublishDate === null) {
     return []
   }
   //await useSanity().fetch<Project[]>(projectsQuery)
