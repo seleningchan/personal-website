@@ -17,7 +17,7 @@ async function fetchNextPage() {
   }
   //await useSanity().fetch<Project[]>(projectsQuery)
   //获取接口返回的result属性
-  const {result} = await fetch<Project[]>(
+  const {result} = await useSanity().fetch<Project[]>(
     groq`*[_type == "project" && _id > $lastId] | order(_id desc) [0...10] {
       "id": _id,
     name,
