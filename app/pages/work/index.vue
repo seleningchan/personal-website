@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Project } from '~~/server/api/projects/index.get'
-//import type { ResolvedSanityImage } from '@sanity/asset-utils'
-//import type { Value } from 'sanity-plugin-internationalized-array'
+import type { ResolvedSanityImage } from '@sanity/asset-utils'
+import type { Value } from 'sanity-plugin-internationalized-array'
 
 const { t } = useI18n()
 
@@ -16,7 +16,7 @@ async function fetchNextPage() {
     return []
   }
   //await useSanity().fetch<Project[]>(projectsQuery)
-  const {result} = await fetch(
+  const {result} = await useSanity().fetch<Project[]>(
     groq`*[_type == "project" && _id > $lastId] | order(_id desc) [0...10] {
       "id": _id,
     name,
@@ -30,7 +30,7 @@ async function fetchNextPage() {
       asset->
     }
     }`, {lastId})
-  
+  console.log("result is :"+JSON.stringify(result))
   if (result.length > 0) {
     lastId = result[result.length - 1]._id
   } else {
@@ -39,8 +39,8 @@ async function fetchNextPage() {
   return result
 }
 
-const {data} = await useFetch<Project[]>('/api/projects')
-//const {data} = await  fetchNextPage()
+//const {data} = await useFetch<Project[]>('/api/projects')
+const {data} = await  fetchNextPage()
 console.log("data is :"+JSON.stringify(data))
 console.log("data length is "+data.length)
 
