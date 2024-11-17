@@ -33,16 +33,16 @@ async function fetchNextPage() {
     }`, {lastId})
   console.log("result is :"+JSON.stringify(result))
   console.log("last is :"+lastId)
-  if (result.length > 0) {
-    lastId = result[result.length - 1].id
-  } else {
-    lastId = null // Reached the end
-  }
+  //if (result.length > 0) {
+  //  lastId = result[result.length - 1].id
+  //} else {
+  //  lastId = null // Reached the end
+  //}
   return result
 }
 
-let data = await  fetchNextPage()
-//const {data} = await useFetch<Project[]>('/api/projects')
+let datax = await  fetchNextPage()
+const {data} = await useFetch<Project[]>('/api/projects')
 console.log("data is" + data)
 console.log("begin log")
 console.log("data is :"+JSON.stringify(data))
