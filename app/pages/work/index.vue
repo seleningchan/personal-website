@@ -16,7 +16,8 @@ async function fetchNextPage() {
     return []
   }
   //await useSanity().fetch<Project[]>(projectsQuery)
-  const {result} = await useSanity().fetch<Project[]>(
+  //获取接口返回的result属性
+  const {result} = await fetch<Project[]>(
     groq`*[_type == "project" && _id > $lastId] | order(_id desc) [0...10] {
       "id": _id,
     name,
@@ -32,18 +33,18 @@ async function fetchNextPage() {
     }`, {lastId})
   console.log("result is :"+JSON.stringify(result))
   console.log("last is :"+lastId)
-  if (result.result.length > 0) {
-    lastId = result[result.result.length - 1]._id
+  if (result.length > 0) {
+    lastId = result[result.length - 1].id
   } else {
     lastId = null // Reached the end
   }
-  return result.result
+  return result
 }
 
-const {data} = await useFetch<Project[]>('/api/projects')
+let data = await  fetchNextPage()
+/const {data} = await useFetch<Project[]>('/api/projects')
 console.log("data is" + data)
 console.log("begin log")
-//const {data} = await  fetchNextPage()
 console.log("data is :"+JSON.stringify(data))
 console.log("data length is "+data.length)
 
