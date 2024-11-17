@@ -9,9 +9,9 @@ useHead({
     title: t('app.work'),
 })
 
-let lastPublishDate = ''
+let lastPublishDate = '2222-11-14 10:42:55'
 const projectsQuery1 = groq`
-*[_type == "project" && _id > $lastId] | order(publishDate desc) [0...10] {
+*[_type == "project" && publishDate < $lastPublishDate] | order(publishDate desc) [0...10] {
    "id": _id,
     name,
     description,
@@ -32,7 +32,7 @@ async function fetchNextPage() {
   }
   //await useSanity().fetch<Project[]>(projectsQuery)
   //获取接口返回的result属性
-  let test = await useSanity().fetch<Project[]>(projectsQuery1, {lastId})
+  let test = await useSanity().fetch<Project[]>(projectsQuery1, {lastPublishDate})
   console.log("result is :"+JSON.stringify(test))
   console.log("result length is :"+test.length)
   if (test.length > 0) {
