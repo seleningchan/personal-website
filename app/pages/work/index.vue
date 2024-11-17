@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { Project } from '~~/server/api/projects/index.get'
+import type { ResolvedSanityImage } from '@sanity/asset-utils'
+import type { Value } from 'sanity-plugin-internationalized-array'
 
 const { t } = useI18n()
 
@@ -7,14 +9,50 @@ useHead({
     title: t('app.work'),
 })
 
-const {data} = await useFetch<Project[]>('/api/projects')
+
+let lastId = ''
+async function fetchNextPage() {
+  if (lastId === null) {
+    return []
+  }
+  //await useSanity().fetch<Project[]>(projectsQuery)
+  const {result} = await useSanity().fetch<Project[]>(
+    groq`*[_type == "project" && _id < $lastId] | order(_id desc) [0...10] {
+      "id": _id,
+    name,
+    description,
+    "slug": slug.current,
+    tags,
+    url,
+    publishDate,
+    sourceCodeUrl,
+    coverImage{
+      asset->
+    }
+    }`, {lastId})
+  
+  if (result.length > 0) {
+    lastId = result[result.length - 1]._id
+  } else {
+    lastId = null // Reached the end
+  }
+  return result
+}
+
+//const {data} = await useFetch<Project[]>('/api/projects')
+const {data} = await fetchNextPage()
+
 console.log("data length is "+data.length)
 console.log("data is :"+JSON.stringify(data))
-//为啥没打印，还没弄清楚
+//已经弄清楚了，data是一个对象，里面的_rawValue属性才是一个数组
+//所以下面的这个循环不会打印
 for (let i = 0; i < data.length; i++) {
     console.log("fix cover image "+data[i].id)
 }
 const localePath = useLocalePath()
+
+
+
 
 </script>
 
