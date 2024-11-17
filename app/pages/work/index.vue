@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Project } from '~~/server/api/projects/index.get'
-import type { ResolvedSanityImage } from '@sanity/asset-utils'
-import type { Value } from 'sanity-plugin-internationalized-array'
+//import type { ResolvedSanityImage } from '@sanity/asset-utils'
+//import type { Value } from 'sanity-plugin-internationalized-array'
 
 const { t } = useI18n()
 
@@ -39,8 +39,8 @@ async function fetchNextPage() {
   return result
 }
 
-//const {data} = await useFetch<Project[]>('/api/projects')
-const {data} = await  fetchNextPage()
+const {data} = await useFetch<Project[]>('/api/projects')
+//const {data} = await  fetchNextPage()
 console.log("data is :"+JSON.stringify(data))
 console.log("data length is "+data.length)
 
