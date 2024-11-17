@@ -30,8 +30,6 @@ async function fetchNextPage() {
   if (lastPublishDate === null) {
     return []
   }
-  //await useSanity().fetch<Project[]>(projectsQuery)
-  //获取接口返回的result属性
   let test = await useSanity().fetch<Project[]>(projectsQuery1, {lastPublishDate})
   console.log("result is :"+JSON.stringify(test))
   console.log("result length is :"+test.length)
@@ -44,8 +42,8 @@ async function fetchNextPage() {
   return test
 }
 
-let datax = await  fetchNextPage()
-const {data} = await useFetch<Project[]>('/api/projects')
+let data = await  fetchNextPage()
+//const {data} = await useFetch<Project[]>('/api/projects')
 console.log("data is" + data)
 console.log("begin log")
 console.log("data is :"+JSON.stringify(data))
@@ -54,7 +52,7 @@ console.log("data length is "+data.length)
 //已经弄清楚了，data是一个对象，里面的_rawValue属性才是一个数组
 //所以下面的这个循环不会打印
 for (let i = 0; i < data.length; i++) {
-    console.log("fix cover image "+data[i].id)
+    //console.log("fix cover image "+data[i].id)
 }
 const localePath = useLocalePath()
 
