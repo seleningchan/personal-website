@@ -9,16 +9,9 @@ useHead({
     title: t('app.work'),
 })
 
-
 let lastId = ''
-async function fetchNextPage() {
-  if (lastId === null) {
-    return []
-  }
-  //await useSanity().fetch<Project[]>(projectsQuery)
-  //获取接口返回的result属性
-  const {result} = await fetch(
-    groq`*[_type == "project" && _id > $lastId] | order(_id desc) [0...10] {
+const projectsQuery1 = groq`
+*[_type == "project" && _id > $lastId] | order(_id desc) [0...10] {
      _id,
     name,
     description,
@@ -30,8 +23,17 @@ async function fetchNextPage() {
     coverImage{
       asset->
     }
-    }`, {lastId})
-  console.log("result is :"+JSON.stringify(result))
+    }`
+
+
+async function fetchNextPage() {
+  if (lastId === null) {
+    return []
+  }
+  //await useSanity().fetch<Project[]>(projectsQuery)
+  //获取接口返回的result属性
+  let test = await useSanity().fetch<Project[]>(projectsQuery1, {lastId})
+  console.log("result is :"+JSON.stringify(test))
   console.log("last is :"+lastId)
   //if (result.length > 0) {
   //  lastId = result[result.length - 1].id
