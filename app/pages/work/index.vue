@@ -19,7 +19,7 @@ async function fetchNextPage() {
   //获取接口返回的result属性
   const {result} = await fetch(
     groq`*[_type == "project" && _id > $lastId] | order(_id desc) [0...10] {
-      "id": _id,
+     _id,
     name,
     description,
     "slug": slug.current,
