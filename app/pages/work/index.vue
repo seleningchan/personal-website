@@ -41,9 +41,9 @@ async function fetchNextPage() {
 
 //const {data} = await useFetch<Project[]>('/api/projects')
 const {data} = await fetchNextPage()
-
-console.log("data length is "+data.length)
 console.log("data is :"+JSON.stringify(data))
+console.log("data length is "+data.length)
+
 //已经弄清楚了，data是一个对象，里面的_rawValue属性才是一个数组
 //所以下面的这个循环不会打印
 for (let i = 0; i < data.length; i++) {
