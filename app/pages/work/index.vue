@@ -31,6 +31,7 @@ async function fetchNextPage() {
     }
     }`, {lastId})
   console.log("result is :"+JSON.stringify(result))
+  console.log("last is :"+lastId)
   if (result.length > 0) {
     lastId = result[result.length - 1]._id
   } else {
