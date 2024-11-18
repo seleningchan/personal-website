@@ -54,6 +54,7 @@ async function fetchNextPage() {
         // 触发加载更多数据
       var temp = await fetchNextPage();
       data.push(temp);
+      console.log("fetch data length is "+data.length)
       }
 }
 
@@ -75,7 +76,8 @@ async function fetchData() {
      data.push(temp);
 }
 
- data = await  fetchNextPage()
+ let tempdata = await fetchNextPage()
+ data.push(tempdata)
 //const {data} = await useFetch<Project[]>('/api/projects')
 console.log("data is" + data)
 console.log("begin log")
