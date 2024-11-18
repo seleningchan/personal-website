@@ -3,11 +3,47 @@ import type { Project } from '~~/server/api/projects/index.get'
 import type { ResolvedSanityImage } from '@sanity/asset-utils'
 import type { Value } from 'sanity-plugin-internationalized-array'
 
+
+export default {
+  data() {
+    return {
+      items: [],
+      lastPublishDate: '2222-11-14 10:42:55',
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    addItem() {
+      this.fetchData();
+    },
+    async function fetchData() {
+            if (this.lastPublishDate === null) {
+                this.items.push([])
+            }
+            var test = await useSanity().fetch<Project[]>(projectsQuery1, {this.lastPublishDate})
+            console.log("result is :"+JSON.stringify(test))
+            console.log("result length is :"+test.length)
+            if (test.length > 0) {
+                this.lastPublishDate = test[test.length - 1].publishDate
+            } else {
+                this.lastPublishDate = null // Reached the end
+            }
+            console.log('last publish date is: '+this.lastPublishDate)
+            this.items.push(test)
+    }
+  }
+};
+
+
+
 const { t } = useI18n()
 
 useHead({
     title: t('app.work'),
 })
+
 
 let lastPublishDate = '2222-11-14 10:42:55'
 
@@ -58,7 +94,8 @@ async function fetchNextPage() {
       }
 }
 
- let data = await fetchNextPage()
+let data = []
+ //let data = await fetchNextPage()
 //const {data} = await useFetch<Project[]>('/api/projects') 原始获取数据
 console.log("begin log")
 console.log("data is :"+JSON.stringify(data))
@@ -75,7 +112,7 @@ const localePath = useLocalePath();
 <template>
     <app-layout :title="$t('work.projects') " class="container mx-auto">
         <div  class="divide-y divide-dashed">
-            <div v-for="item in data" :key="item.id" class="flex flex-col md:flex-row space-x-4 p-4">
+            <div v-for="item in items" :key="item.id" class="flex flex-col md:flex-row space-x-4 p-4">
                 <div class="mb-6 md:mb-0 w-4/5 md:w-[200px] xl:w-[240px] self-center md:self-auto">
                      <ui-aspect-ratio :ratio="16 / 10">
                         <my-sanity-image v-if="item.coverImage" 
@@ -119,5 +156,6 @@ const localePath = useLocalePath();
                 </div>
             </div>
         </div>
+        <div><button @click="addItem">Next page</button></div>
     </app-layout>
 </template>
