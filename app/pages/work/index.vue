@@ -36,7 +36,7 @@ export default {
             if (this.lastPublishDate === null) {
                 this.items.push([])
             }
-            var test = await useSanity().fetch<Project[]>(projectsQuery1, {this.lastPublishDate})
+            var test = []
             console.log("result is :"+JSON.stringify(test))
             console.log("result length is :"+test.length)
             if (test.length > 0) {
@@ -95,8 +95,8 @@ async function fetchNextPage() {
       }
 }
 
-let data = []
- //let data = await fetchNextPage()
+
+ let data = await fetchNextPage()
 //const {data} = await useFetch<Project[]>('/api/projects') 原始获取数据
 console.log("begin log")
 console.log("data is :"+JSON.stringify(data))
