@@ -8,7 +8,21 @@ export default {
   data() {
     return {
       items: [],
-      lastPublishDate: '2222-11-14 10:42:55'
+      lastPublishDate: '2222-11-14 10:42:55',
+      projectsQuery = groq`
+            *[_type == "project" && publishDate < $lastPublishDate] | order(publishDate desc) [0...10] {
+            "id": _id,
+                name,
+                description,
+                "slug": slug.current,
+                tags,
+                url,
+                publishDate,
+                sourceCodeUrl,
+                coverImage{
+                asset->
+                }
+        }`
     };
   },
   created() {
@@ -22,7 +36,7 @@ export default {
             if (this.lastPublishDate === null) {
                 this.items.push([])
             }
-            var test = await useSanity().fetch<Project[]>(projectsQuery1, {this.lastPublishDate})
+            var test = await useSanity().fetch<Project[]>(this.projectsQuery, {this.lastPublishDate})
             console.log("result is :"+JSON.stringify(test))
             console.log("result length is :"+test.length)
             if (test.length > 0) {
