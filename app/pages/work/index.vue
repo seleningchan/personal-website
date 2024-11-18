@@ -10,6 +10,7 @@ useHead({
 })
 
 let lastPublishDate = '2222-11-14 10:42:55'
+let data = [];
 const projectsQuery1 = groq`
 *[_type == "project" && publishDate < $lastPublishDate] | order(publishDate desc) [0...10] {
    "id": _id,
@@ -74,7 +75,7 @@ async function fetchData() {
      data.push(temp);
 }
 
-let data = await  fetchNextPage()
+ data = await  fetchNextPage()
 //const {data} = await useFetch<Project[]>('/api/projects')
 console.log("data is" + data)
 console.log("begin log")
