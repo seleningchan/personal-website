@@ -43,7 +43,7 @@ async function fetchNextPage() {
   return test
 }
 
- window.addEventListener('scroll', handleScrollWindows);
+ //window.addEventListener('scroll', handleScrollWindows);
 
  async function handleScrollWindows() {
       // 检查是否滚动到页面底部
@@ -76,10 +76,10 @@ async function fetchData() {
      data.push(temp);
 }
 
- let tempdata = await fetchNextPage()
- data.push(tempdata)
+ //let tempdata = await fetchNextPage()
+ //data.push(tempdata)
+ let data = await fetchNextPage()
 //const {data} = await useFetch<Project[]>('/api/projects')
-console.log("data is" + data)
 console.log("begin log")
 console.log("data is :"+JSON.stringify(data))
 console.log("data length is "+data.length)
