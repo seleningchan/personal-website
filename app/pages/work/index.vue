@@ -42,7 +42,7 @@ async function fetchNextPage() {
   return test
 }
 
- //window.addEventListener('scroll', handleScrollWindows);
+ window.addEventListener('scroll', handleScrollWindows);
 
  function handleScrollWindows() {
       // 检查是否滚动到页面底部
