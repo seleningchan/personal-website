@@ -3,26 +3,26 @@ import type { Project } from '~~/server/api/projects/index.get'
 import type { ResolvedSanityImage } from '@sanity/asset-utils'
 import type { Value } from 'sanity-plugin-internationalized-array'
 
+const projectsQuery1 = groq`
+*[_type == "project" && publishDate < $lastPublishDate] | order(publishDate desc) [0...10] {
+   "id": _id,
+    name,
+    description,
+    "slug": slug.current,
+    tags,
+    url,
+    publishDate,
+    sourceCodeUrl,
+    coverImage{
+      asset->
+    }
+    }`
 
 export default {
   data() {
     return {
       items: [],
       lastPublishDate: '2222-11-14 10:42:55',
-      projectsQuery = groq`
-            *[_type == "project" && publishDate < $lastPublishDate] | order(publishDate desc) [0...10] {
-            "id": _id,
-                name,
-                description,
-                "slug": slug.current,
-                tags,
-                url,
-                publishDate,
-                sourceCodeUrl,
-                coverImage{
-                asset->
-                }
-        }`
     };
   },
   created() {
@@ -36,7 +36,7 @@ export default {
             if (this.lastPublishDate === null) {
                 this.items.push([])
             }
-            var test = await useSanity().fetch<Project[]>(this.projectsQuery, {this.lastPublishDate})
+            var test = await useSanity().fetch<Project[]>(projectsQuery1, {this.lastPublishDate})
             console.log("result is :"+JSON.stringify(test))
             console.log("result length is :"+test.length)
             if (test.length > 0) {
@@ -61,20 +61,7 @@ useHead({
 
 let lastPublishDate = '2222-11-14 10:42:55'
 
-const projectsQuery1 = groq`
-*[_type == "project" && publishDate < $lastPublishDate] | order(publishDate desc) [0...10] {
-   "id": _id,
-    name,
-    description,
-    "slug": slug.current,
-    tags,
-    url,
-    publishDate,
-    sourceCodeUrl,
-    coverImage{
-      asset->
-    }
-    }`
+
 
 
 async function fetchNextPage() {
