@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       items: [],
-      lastPublishDate: '2222-11-14 10:42:55',
+      lastPublishDate: '2222-11-14 10:42:55'
     };
   },
   created() {
@@ -18,7 +18,7 @@ export default {
     addItem() {
       this.fetchData();
     },
-    async function fetchData() {
+    async fetchData() {
             if (this.lastPublishDate === null) {
                 this.items.push([])
             }
