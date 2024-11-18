@@ -10,7 +10,7 @@ useHead({
 })
 
 let lastPublishDate = '2222-11-14 10:42:55'
-let data = [];
+
 const projectsQuery1 = groq`
 *[_type == "project" && publishDate < $lastPublishDate] | order(publishDate desc) [0...10] {
    "id": _id,
@@ -58,28 +58,8 @@ async function fetchNextPage() {
       }
 }
 
-async function  handleScroll(event) {
-      if(isScrollToBottom(event)) {
-        await fetchData();
-      }
-}
-
-function isScrollToBottom(event) {
-   const { scrollTop, clientHeight } = event.target;
-   const { scrollHeight } = event.target.scrollTop;
-   return scrollHeight - (scrollTop + clientHeight) < 5; // 5是一个阈值，可以根据需要调整
- }  
-
-async function fetchData() {
-    // 模拟数据加载，实际应用中应该是发起网络请求
-     var temp = await fetchNextPage();
-     data.push(temp);
-}
-
- //let tempdata = await fetchNextPage()
- //data.push(tempdata)
  let data = await fetchNextPage()
-//const {data} = await useFetch<Project[]>('/api/projects')
+//const {data} = await useFetch<Project[]>('/api/projects') 原始获取数据
 console.log("begin log")
 console.log("data is :"+JSON.stringify(data))
 console.log("data length is "+data.length)
