@@ -124,6 +124,5 @@ const localePath = useLocalePath();
                 </div>
             </div>
         </div>
-        <div><button @click="addItem">Next page</button></div>
     </app-layout>
 </template>
