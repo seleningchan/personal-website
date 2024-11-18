@@ -44,7 +44,7 @@ async function fetchNextPage() {
 
  window.addEventListener('scroll', handleScrollWindows);
 
- function handleScrollWindows() {
+ async function handleScrollWindows() {
       // 检查是否滚动到页面底部
       const scrollHeight = document.documentElement.scrollHeight;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
