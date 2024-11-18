@@ -18,39 +18,6 @@ const projectsQuery1 = groq`
     }
     }`
 
-export default {
-  data() {
-    return {
-      items: [],
-      lastPublishDate: '2222-11-14 10:42:55',
-    };
-  },
-  created() {
-    this.fetchData();
-  },
-  methods: {
-    addItem() {
-      this.fetchData();
-    },
-    async fetchData() {
-            if (this.lastPublishDate === null) {
-                this.items.push([])
-            }
-            var test = []
-            console.log("result is :"+JSON.stringify(test))
-            console.log("result length is :"+test.length)
-            if (test.length > 0) {
-                this.lastPublishDate = test[test.length - 1].publishDate
-            } else {
-                this.lastPublishDate = null // Reached the end
-            }
-            console.log('last publish date is: '+this.lastPublishDate)
-            this.items.push(test)
-    }
-  }
-};
-
-
 
 const { t } = useI18n()
 
