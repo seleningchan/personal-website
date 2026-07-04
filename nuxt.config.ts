@@ -10,9 +10,9 @@ export default defineNuxtConfig({
         compatibilityVersion: 4,
     },
 	
-	app: {
+	/*app: {
         baseURL: '/app1/',
-    },
+    },*/
 
     extends: ['nuxt-umami'],
 
